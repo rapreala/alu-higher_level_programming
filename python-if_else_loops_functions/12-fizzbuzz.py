@@ -9,6 +9,6 @@ def fizzbuzz():
             print("{}".format("Buzz"), end=" ")
         else:
             print("{}".format(i), end=" ")
-fizzbuzz()
+
 
 
