@@ -1,6 +1,6 @@
 #!/usr/bin/python3
-"""Defines unittests for models/square.py
-"""
+""" Unittests for models/square.py."""
+import os
 import io
 import sys
 import unittest
@@ -9,7 +9,9 @@ from models.square import Square
 
 
 class TestSquare_instantiation(unittest.TestCase):
-    """Unittests for testing instantiation of the Square class."""
+    """
+        Tests for testing instantiation of the Square class.
+    """
 
     def test_is_base(self):
         self.assertIsInstance(Square(10), Base)
@@ -73,7 +75,9 @@ class TestSquare_instantiation(unittest.TestCase):
 
 
 class TestSquare_size(unittest.TestCase):
-    """Unittests for testing size initialization of the Square class."""
+    """
+        Tests for testing size initialization of the Square class.
+    """
 
     def test_None_size(self):
         with self.assertRaisesRegex(TypeError, "width must be an integer"):
@@ -94,10 +98,11 @@ class TestSquare_size(unittest.TestCase):
     def test_dict_size(self):
         with self.assertRaisesRegex(TypeError, "width must be an integer"):
             Square({"a": 1, "b": 2}, 2)
-
+    """
     def test_bool_size(self):
         with self.assertRaisesRegex(TypeError, "width must be an integer"):
             Square(True, 2, 3)
+    """
 
     def test_list_size(self):
         with self.assertRaisesRegex(TypeError, "width must be an integer"):
@@ -150,7 +155,9 @@ class TestSquare_size(unittest.TestCase):
 
 
 class TestSquare_x(unittest.TestCase):
-    """Unittests for testing initialization of Square x attribute."""
+    """
+        Tests for testing initialization of Square x attribute.
+    """
 
     def test_None_x(self):
         with self.assertRaisesRegex(TypeError, "x must be an integer"):
@@ -171,10 +178,11 @@ class TestSquare_x(unittest.TestCase):
     def test_dict_x(self):
         with self.assertRaisesRegex(TypeError, "x must be an integer"):
             Square(1, {"a": 1, "b": 2}, 2)
-
+    """
     def test_bool_x(self):
         with self.assertRaisesRegex(TypeError, "x must be an integer"):
             Square(1, True)
+    """
 
     def test_list_x(self):
         with self.assertRaisesRegex(TypeError, "x must be an integer"):
@@ -222,7 +230,9 @@ class TestSquare_x(unittest.TestCase):
 
 
 class TestSquare_y(unittest.TestCase):
-    """Unittests for testing initialization of Square y attribute."""
+    """
+        Tests for testing initialization of Square y attribute.
+    """
 
     def test_None_y(self):
         with self.assertRaisesRegex(TypeError, "y must be an integer"):
@@ -290,7 +300,9 @@ class TestSquare_y(unittest.TestCase):
 
 
 class TestSquare_order_of_initialization(unittest.TestCase):
-    """Unittests for testing order of Square attribute initialization."""
+    """
+        Tests for testing order of Square attribute initialization.
+    """
 
     def test_size_before_x(self):
         with self.assertRaisesRegex(TypeError, "width must be an integer"):
@@ -306,7 +318,9 @@ class TestSquare_order_of_initialization(unittest.TestCase):
 
 
 class TestSquare_area(unittest.TestCase):
-    """Unittests for testing the area method of the Square class."""
+    """
+        Tests for testing the area method of the Square class.
+    """
 
     def test_area_small(self):
         self.assertEqual(100, Square(10, 0, 0, 1).area())
@@ -327,16 +341,19 @@ class TestSquare_area(unittest.TestCase):
 
 
 class TestSquare_stdout(unittest.TestCase):
-    """Unittests for testing __str__ and display methods of Square class."""
+    """
+        Tests for testing __str__ and display methods of Square class.
+    """
 
     @staticmethod
     def capture_stdout(sq, method):
-        """Captures and returns text printed to stdout.
-        Args:
-            sq (Square): The Square ot print to stdout.
-            method (str): The method to run on sq.
-        Returns:
-            The text printed to stdout by calling method on sq.
+        """
+            Capture &  return text printed to stdout.
+            Args:
+                sq (Square): square to  print to stdout.
+                method (str): method to run on sq.
+            Return:
+                text printed to stdout by calling method on sq.
         """
         capture = io.StringIO()
         sys.stdout = capture
@@ -409,7 +426,9 @@ class TestSquare_stdout(unittest.TestCase):
 
 
 class TestSquare_update_args(unittest.TestCase):
-    """Unittests for testing update args method of the Square class."""
+    """
+        Tests for testing update args method of the Square class.
+    """
 
     def test_update_args_zero(self):
         s = Square(10, 10, 10, 10)
@@ -521,7 +540,9 @@ class TestSquare_update_args(unittest.TestCase):
 
 
 class TestSquare_update_kwargs(unittest.TestCase):
-    """Unittests for testing update kwargs method of Square class."""
+    """
+        Tests for testing update kwargs method of Square class.
+    """
 
     def test_update_kwargs_one(self):
         s = Square(10, 10, 10, 10)
@@ -562,7 +583,7 @@ class TestSquare_update_kwargs(unittest.TestCase):
     def test_update_kwargs_None_id_and_more(self):
         s = Square(10, 10, 10, 10)
         s.update(id=None, size=7, x=18)
-        correct = "[Square] (156) 18/10 - 7"
+        correct = "[Square] ({}) 18/10 - 7".format(s.id)
         self.assertEqual(correct, str(s))
 
     def test_update_kwargs_twice(self):
@@ -623,7 +644,7 @@ class TestSquare_update_kwargs(unittest.TestCase):
 
 
 class TestSquare_to_dictionary(unittest.TestCase):
-    """Unittests for testing to_dictionary method of the Square class."""
+    """ Tests for testing to_dictionary method of the Square class. """
 
     def test_to_dictionary_output(self):
         s = Square(10, 2, 1, 1)
@@ -641,6 +662,70 @@ class TestSquare_to_dictionary(unittest.TestCase):
         with self.assertRaises(TypeError):
             s.to_dictionary(1)
 
+    def test_create(self):
+        """Test the functions in square"""
+        s1 = Square.create(**{'id': 89})
+        self.assertEqual(s1.id, 89)
+
+        s1 = Square.create(**{'id': 89, 'size': 1})
+        self.assertEqual(s1.id, 89)
+        self.assertEqual(s1.size, 1)
+
+        s1 = Square.create(**{'id': 89, 'size': 1, 'x': 2})
+        self.assertEqual(s1.id, 89)
+        self.assertEqual(s1.size, 1)
+        self.assertEqual(s1.x, 2)
+
+        s1 = Square.create(**{'id': 89, 'size': 1,
+                              'x': 2, 'y': 3})
+        self.assertEqual(s1.id, 89)
+        self.assertEqual(s1.size, 1)
+        self.assertEqual(s1.x, 2)
+        self.assertEqual(s1.y, 3)
+
+        s1 = Square.create(**{'id': 89, 'size': 1,
+                              'x': 2, 'y': 3})
+        self.assertEqual(s1.id, 89)
+        self.assertEqual(s1.size, 1)
+        self.assertEqual(s1.x, 2)
+        self.assertEqual(s1.y, 3)
+
+    def test_save_to_file(self):
+        """Test the functions in square"""
+        Base._Base__nb_objects = 0
+
+        Square.save_to_file(None)
+        self.assertTrue(os.path.isfile("Square.json"))
+        with open("Square.json") as file:
+            self.assertEqual(file.read(), '[]')
+
+        Square.save_to_file([])
+        with open("Square.json") as file:
+            self.assertEqual(file.read(), '[]')
+            self.assertEqual(type(file.read()), str)
+
+        Square.save_to_file([Square(1)])
+        with open("Square.json") as file:
+            self.assertEqual(file.read(),
+                             '[{"id": 1, "size": 1, "x": 0, "y": 0}]')
+
+    def test_save_to_file_empty(self):
+        Square.save_to_file([])
+        self.assertTrue(os.path.isfile("Square.json"))
+        with open("Square.json") as file:
+            self.assertEqual(file.read(), "[]")
+            self.assertEqual(type(file.read()), str)
+
+    def test_load_from_file(self):
+        """Test the functions in square"""
+        if os.path.exists("Square.json"):
+            os.remove("Square.json")
+
+        self.assertEqual(Square.load_from_file(), [])
+        Square.save_to_file([Square(2)])
+        from_file = Square.load_from_file()
+        self.assertEqual(type(from_file), list)
+        self.assertEqual(from_file[0].size, 2)
 
 if __name__ == "__main__":
     unittest.main()
