@@ -4,7 +4,8 @@
 
 def matrix_divided(matrix, div):
     """
-    Divides all elements of a matrix by a given number, rounded to two decimal places.
+    Divides all elements of a matrix by a given number, 
+    rounded to two decimal places.
     Args:
     matrix (list of lists): matrix of integers or floats
     div (int or float): number to divide matrix elements by
@@ -17,7 +18,8 @@ def matrix_divided(matrix, div):
     ZeroDivisionError: if div is equal to 0
     """
     # check if matrix is a list of lists of integers or floats
-    if not all(isinstance(row, list) for row in matrix) or not all(isinstance(element, (int, float)) for row in matrix for element in row):
+    if not all(isinstance(row, list) for row in matrix) or not all(isinstance(element, 
+    (int, float)) for row in matrix for element in row):
         raise TypeError('matrix must be a matrix (list of lists) of integers/floats')
     # check if rows of matrix are of equal size
     row_sizes = [len(row) for row in matrix]
@@ -30,5 +32,6 @@ def matrix_divided(matrix, div):
     if div == 0:
         raise ZeroDivisionError('division by zero')
     # divide elements of matrix by div and round to two decimal places
-    divided_matrix = [[round(element / div, 2) for element in row] for row in matrix]
+    divided_matrix = [[round(element / div, 2) for element in row] 
+    for row in matrix]
     return divided_matrix
