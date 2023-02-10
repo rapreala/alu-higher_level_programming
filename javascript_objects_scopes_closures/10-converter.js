@@ -1,9 +1,8 @@
 #!/usr/bin/node
 const converter = base => {
-    return number => {
-      return number.toString(base);
-    };
+  return number => {
+    return number.toString(base);
   };
-  
-  exports.converter = converter;
-  
+};
+
+exports.converter = converter;
