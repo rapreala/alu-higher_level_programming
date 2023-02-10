@@ -1,14 +1,13 @@
 #!/usr/bin/node
-const add = (a, b) => {
-    console.log(parseInt(a) + parseInt(b));
-  };
-  
-  const firstInt = process.argv[2];
-  const secondInt = process.argv[3];
-  
-  if (isNaN(firstInt) || isNaN(secondInt)) {
-    console.log('Both arguments must be integers.');
-  } else {
-    add(firstInt, secondInt);
-  }
-  
+
+const args = process.argv.slice(2);
+
+const num1 = parseInt(args[0]);
+const num2 = parseInt(args[1]);
+
+function add (a, b) {
+  const sum = a + b;
+  console.log(sum);
+}
+
+add(num1, num2);

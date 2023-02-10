@@ -1,2 +1,2 @@
 #!/usr/bin/node
-const add = (a, b) => a + b;
+module.exports.add = (a, b) => parseInt(a) + parseInt(b);
