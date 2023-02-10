@@ -19,7 +19,7 @@ request(apiUrl, (error, response, body) => {
   const characterUrls = movie.characters;
 
   let characterIndex = 0;
-  function getNextCharacter() {
+  function getNextCharacter () {
     if (characterIndex >= characterUrls.length) {
       return;
     }
